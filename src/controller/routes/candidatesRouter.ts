@@ -7,3 +7,4 @@ const candidatesController = new CandidateController()
 
 candidatesRouter.post('/register', candidatesController.register)
 candidatesRouter.get('/getAllCandidates', candidatesController.getAllCandidates)
+candidatesRouter.get('/getCandidate/:cpf', candidatesController.getCandidateByCpf)

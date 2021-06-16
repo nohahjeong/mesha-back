@@ -1,6 +1,7 @@
 import { CandidatesDatabase } from '../data/CandidatesDatabase';
 import { Candidate, RegisterInputDTO } from './model/Candidate';
 import { ExpectationFailedError } from './error/ExpectationFailedError';
+import { NotFoundError } from './error/NotFoundError';
 
 export class CandidatesBusiness {
     constructor(
@@ -33,6 +34,12 @@ export class CandidatesBusiness {
 
     async getAllCandidates() {
         const result = await this.candidatesDatabase.selectAllCandidates()
+
+        return result
+    };
+
+    async getCandidateByCpf(cpf: string) {
+        const result = await this.candidatesDatabase.selectCandidateByCpf(cpf)
 
         return result
     };

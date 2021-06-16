@@ -29,4 +29,19 @@ export class CandidatesDatabase extends Database {
             await Database.destroyConnection()
         }
     }
+
+    public async selectCandidateByCpf(cpf: string): Promise<any> {
+        try {
+            const result = await this.getConnection().raw(`
+                SELECT * FROM ${this.tableNames.candidates}
+                WHERE cpf = '${cpf}'
+            `)
+
+            return result[0]
+        } catch (error) {
+            throw new Error(error.sqlMessage)
+        } finally {
+            await Database.destroyConnection()
+        }
+    }
 };
