@@ -19,6 +19,7 @@ export class CandidatesDatabase extends Database {
         try {
             const result = await this.getConnection().raw(`
                 SELECT * FROM ${this.tableNames.candidates}
+                ORDER BY name ASC
             `)
 
             return result[0]

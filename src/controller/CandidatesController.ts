@@ -20,7 +20,7 @@ export class CandidateController {
 
             await candidateBusiness.registerCandidate(input)
 
-            res.status(200).send('Registrado!')
+            res.status(200).send(req.body.name)
         } catch (error) {
             if (error.message.includes('Duplicate')) {
                 res.status(409).send('CPF já registrado!')
