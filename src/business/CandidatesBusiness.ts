@@ -1,6 +1,7 @@
 import { CandidatesDatabase } from '../data/CandidatesDatabase';
-import { ExpectationFailedError } from './error/ExpectationFailedError';
 import { Candidate, RegisterInputDTO } from './model/Candidate';
+import { ExpectationFailedError } from './error/ExpectationFailedError';
+import { NotFoundError } from './error/NotFoundError';
 
 export class CandidatesBusiness {
     constructor(
@@ -29,5 +30,15 @@ export class CandidatesBusiness {
                 ...candidate
             })
         )
+    }
+
+    async getAllCandidates() {
+        const result = await this.candidatesDatabase.selectAllCandidates()
+
+        if (!result) {
+            throw new NotFoundError('Nenhum candidato registrado!')
+        }
+
+        return result
     }
 };

@@ -6,3 +6,4 @@ export const candidatesRouter = express.Router();
 const candidatesController = new CandidateController()
 
 candidatesRouter.post('/register', candidatesController.register)
+candidatesRouter.get('/getAllCandidates', candidatesController.getAllCandidates)

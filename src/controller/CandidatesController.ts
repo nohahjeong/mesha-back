@@ -25,8 +25,18 @@ export class CandidateController {
             if (error.message.includes('Duplicate')) {
                 res.status(409).send('CPF já registrado!')
             } else {
-                res.status(400).send({ error: error.message })
+                res.status(error.statusCode || 400).send({ error: error.message })
             }
+        }
+    }
+
+    async getAllCandidates(req: Request, res: Response) {
+        try {
+            const result = await candidateBusiness.getAllCandidates()
+
+            res.status(200).send(result)
+        } catch (error) {
+            res.status(error.statusCode || 400).send({ error: error.message })
         }
     }
 }

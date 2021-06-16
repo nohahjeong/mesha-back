@@ -4,7 +4,7 @@ export abstract class Database {
     private static connection: Knex | null = null;
 
     protected tableNames = {
-        candidatesTableName: "MESHA_CANDIDATES"
+        candidates: "MESHA_CANDIDATES"
     };
 
     protected getConnection(): Knex {
