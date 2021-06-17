@@ -51,4 +51,18 @@ export class CandidateController {
             res.status(error.statusCode || 400).send({ error: error.message })
         }
     }
+
+    async validateCandidate(req: Request, res: Response) {
+        try {
+            const candidateCpf = req.params.cpf
+            const validation = req.body.validation
+            const validationTime = req.body.validationTime
+
+            await candidateBusiness.validateCandidate(candidateCpf, validation, validationTime)
+
+            res.status(200).send('Validado!')
+        } catch (error) {
+            res.status(error.statusCode || 400).send({ error: error.message })
+        }
+    }
 }

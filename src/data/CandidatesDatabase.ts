@@ -44,4 +44,18 @@ export class CandidatesDatabase extends Database {
             await Database.destroyConnection()
         }
     }
+
+    public async validateCandidate(cpf: string, validation: boolean, validationTime: Date): Promise<void> {
+        try {
+            await this.getConnection().raw(`
+                UPDATE ${this.tableNames.candidates}
+                SET validation = ${validation}, validationTime = "${validationTime}"
+                WHERE cpf = "${cpf}";
+            `)
+        } catch (error) {
+            throw new Error(error.sqlMessage)
+        } finally {
+            await Database.destroyConnection()
+        }
+    }
 };
