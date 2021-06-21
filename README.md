@@ -1,4 +1,4 @@
-# Avaliação técnica FullStack NodeJS - `MESHA` - Back End
+# Avaliação técnica FullStack NodeJS - Back End
 
 Desenvolvido em TypeScript com Express e Knex.
 
